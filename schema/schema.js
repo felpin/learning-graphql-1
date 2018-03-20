@@ -90,6 +90,17 @@ const mutation = new GraphQLObjectType({
           .then(response => response.data);
       },
     },
+    deleteUser: {
+      type: GraphQLString,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve(parentValue, args) {
+        return axios
+          .delete(`${process.env.JSON_SERVER}/users/${args.id}`)
+          .then(response => response.statusText);
+      },
+    },
   },
 });
 
