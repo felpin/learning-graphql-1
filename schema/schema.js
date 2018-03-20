@@ -1,3 +1,4 @@
+require('dotenv').config();
 const axios = require('axios');
 const graphql = require('graphql');
 
@@ -25,7 +26,7 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLString } },
       resolve(parentValue, args) {
         return axios
-          .get(`http://localhost:3000/users/${args.id}`)
+          .get(`${process.env.JSON_SERVER}/users/${args.id}`)
           .then(response => response.data);
       },
     },
